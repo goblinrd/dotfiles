@@ -20,6 +20,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 set ts=2 sw=2
+set signcolumn=yes
 
 map <C-t><C-t> :NERDTreeFocus<CR>
 map <C-t><C-n> :NERDTreeToggle<CR>
