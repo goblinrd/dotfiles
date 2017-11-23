@@ -42,6 +42,7 @@ command=/usr/lib/i3blocks/$BLOCK_NAME
 #separator=false
 #separator_block_width=0
 [vpn]
+command=$HOME/.config/i3blocks/vpn
 interval=20
 
 [iface]
