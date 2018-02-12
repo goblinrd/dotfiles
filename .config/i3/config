@@ -52,8 +52,8 @@ bindsym  XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill 
 bindsym  XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+3 i3blocks
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
-bindsym $mod+Shift+d exec rofi -show
+bindcode $mod+40 exec rofi -show run
+bindcode $mod+Shift+40 exec rofi -show window
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -105,6 +105,7 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 set $PRIMARY_DISPLAY eDP1
+set $SECONDARY_DISPLAY HDMI1
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -113,6 +114,22 @@ workspace 2 output $PRIMARY_DISPLAY
 workspace 3 output $PRIMARY_DISPLAY
 workspace 4 output $PRIMARY_DISPLAY
 workspace 5 output $PRIMARY_DISPLAY
+workspace 6 output $PRIMARY_DISPLAY
+workspace 7 output $PRIMARY_DISPLAY
+workspace 8 output $PRIMARY_DISPLAY
+workspace 9 output $PRIMARY_DISPLAY
+workspace 10 output $PRIMARY_DISPLAY
+
+workspace 11 output $SECONDARY_DISPLAY
+workspace 12 output $SECONDARY_DISPLAY
+workspace 13 output $SECONDARY_DISPLAY
+workspace 14 output $SECONDARY_DISPLAY
+workspace 15 output $SECONDARY_DISPLAY
+workspace 16 output $SECONDARY_DISPLAY
+workspace 17 output $SECONDARY_DISPLAY
+workspace 18 output $SECONDARY_DISPLAY
+workspace 19 output $SECONDARY_DISPLAY
+workspace 20 output $SECONDARY_DISPLAY
 
 workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace next
@@ -132,6 +149,16 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+bindcode $mod+87 workspace 11
+bindcode $mod+88 workspace 12
+bindcode $mod+89 workspace 13
+bindcode $mod+83 workspace 14
+bindcode $mod+84 workspace 15
+bindcode $mod+85 workspace 16
+bindcode $mod+79 workspace 17
+bindcode $mod+80 workspace 18
+bindcode $mod+81 workspace 19
+bindcode $mod+90 workspace 20
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -144,6 +171,16 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+bindcode $mod+Shift+87 move container to workspace 11
+bindcode $mod+Shift+88 move container to workspace 12
+bindcode $mod+Shift+89 move container to workspace 13
+bindcode $mod+Shift+83 move container to workspace 14
+bindcode $mod+Shift+84 move container to workspace 15
+bindcode $mod+Shift+85 move container to workspace 16
+bindcode $mod+Shift+79 move container to workspace 17
+bindcode $mod+Shift+80 move container to workspace 18
+bindcode $mod+Shift+81 move container to workspace 19
+bindcode $mod+Shift+90 move container to workspace 20
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
