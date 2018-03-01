@@ -39,9 +39,9 @@ bindsym $mod+Shift+q kill
 bindsym $mod+End exec --no-startup-id i3lock
 
 bindsym Print exec scrot -e 'mv $f /tmp/'
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -3% && pkill -RTMIN+1 i3blocks #decrease sound volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +3% && pkill -RTMIN+1 i3blocks #increase sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume $DEFAULT_SINK -3% && pkill -RTMIN+1 i3blocks #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume $DEFAULT_SINK +3% && pkill -RTMIN+1 i3blocks #increase sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute $DEFAULT_SINK toggle && pkill -RTMIN+1 i3blocks #increase sound volume
 #increase sound volume
 bindsym XF86AudioPlay exec --no-startup-id cmus-remote --pause
 bindsym XF86AudioPrev exec --no-startup-id cmus-remote --prev && pkill -RTMIN+2 i3blocks
@@ -106,6 +106,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 set $PRIMARY_DISPLAY eDP1
 set $SECONDARY_DISPLAY HDMI1
+set $DEFAULT_SINK "alsa_output.pci-0000_00_1b.0.analog-stereo"
 # focus the parent container
 bindsym $mod+a focus parent
 
