@@ -28,6 +28,7 @@ map <C-c><C-c> :SyntasticCheck<CR>
 map <C-c><C-x> :SyntasticReset<CR>
 map <C-c><C-n> :ll<CR>
 nmap <C-p> :Files<CR>
+nmap <C-\> :Ag<Space>
 nmap ; :Buffers<CR>
 
 "remove trailing spaces
@@ -51,3 +52,4 @@ set ttimeoutlen=50
 " indentation
 autocmd Filetype javascript,css setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 autocmd Filetype json setlocal tabstop=4 shiftwidth=4 softtabstop=0 expandtab
+autocmd Filetype php,html setlocal tabstop=4 shiftwidth=4 softtabstop=0 expandtab
