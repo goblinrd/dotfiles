@@ -1,4 +1,5 @@
 set number
+set hidden
 syntax on
 set incsearch
 set mouse=a
