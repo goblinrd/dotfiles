@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+connected_network() {
+	nmcli -t -f IN-USE,SSID device wifi | grep '^\*' | sed 's/\*://'
+}
+
+connected_network
+
+

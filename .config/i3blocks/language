@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+language() {
+	setxkbmap -query | grep layout | sed 's/layout: \s*\(.*\)/\1/' | sed 's/,.*//'
+}
+case $BLOCK_BUTTON in
+	1) setxkbmap -layout us,ru
+		;;
+	3) setxkbmap -layout ru,us
+esac
+language

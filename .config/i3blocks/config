@@ -45,6 +45,15 @@ command=/usr/lib/i3blocks/$BLOCK_NAME
 command=$HOME/.config/i3blocks/vpn
 interval=20
 
+[language]
+command=$HOME/.config/i3blocks/language
+interval=once
+signal=4
+
+[connected-network]
+command=$HOME/.config/i3blocks/connected_network
+interval=20
+
 [iface]
 interval=20
 
