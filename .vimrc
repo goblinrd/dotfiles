@@ -7,11 +7,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
+Plug 'digitaltoad/vim-pug'
+Plug 'leafgarland/typescript-vim'
 
 Plug 'vim-syntastic/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'heavenshell/vim-jsdoc'
 
 Plug 'elixir-editors/vim-elixir'
 
@@ -42,6 +45,10 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = {"mode": "passive"}
 
+let g:javascript_plugin_jsdoc = 1
+
+let g:jsdoc_input_description = 1
+let g:jsdoc_allow_input_prompt = 1
 
 let g:jsx_ext_required = 0
 " for airline to be visible always
