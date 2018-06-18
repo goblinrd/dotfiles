@@ -41,6 +41,7 @@ bindsym $mod+Home exec --no-startup-id "xrandr --output HDMI1 --auto --right-of 
 bindsym $mod+Shift+Home exec --no-startup-id "xrandr --output HDMI1 --off"
 
 bindsym Print exec scrot -e 'mv $f /tmp/'
+bindsym --release $mod+Print exec scrot -s -e 'mv $f /tmp/'
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume $DEFAULT_SINK -3% && pkill -RTMIN+1 i3blocks #decrease sound volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume $DEFAULT_SINK +3% && pkill -RTMIN+1 i3blocks #increase sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute $DEFAULT_SINK toggle && pkill -RTMIN+1 i3blocks #increase sound volume
@@ -237,7 +238,8 @@ client.background #3f4551
 client.focused #333333 #222222 #ffffff
 exec --no-startup-id compton --no-fading-openclose -b
 exec --no-startup-id nitrogen --restore
-exec--no-startup-id lxsession
+exec --no-startup-id parcellite -n
+exec --no-startup-id lxsession
 
 
 for_window [class="TelegramDesktop"] move container to workspace 9

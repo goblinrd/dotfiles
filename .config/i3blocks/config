@@ -94,5 +94,5 @@ interval=30
 
 [time]
 label=
-command=date '+%H:%M %d %b'
+command=date '+%H:%M %d %b %:::z'
 interval=5

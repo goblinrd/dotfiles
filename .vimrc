@@ -19,6 +19,7 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'elixir-editors/vim-elixir'
 
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -33,6 +34,7 @@ map <C-c><C-x> :SyntasticReset<CR>
 map <C-c><C-n> :ll<CR>
 nmap <C-p> :Files<CR>
 nmap <C-\> :Ag<Space>
+vmap <C-\> y:Ag<Space><C-R>"<CR>
 nmap ; :Buffers<CR>
 
 "remove trailing spaces
@@ -49,7 +51,7 @@ let g:javascript_plugin_jsdoc = 1
 
 let g:jsdoc_input_description = 1
 let g:jsdoc_allow_input_prompt = 1
-
+let g:airline_theme = 'angr'
 let g:jsx_ext_required = 0
 " for airline to be visible always
 set laststatus=2
@@ -58,6 +60,6 @@ set noshowmode
 " no delay after esc
 set ttimeoutlen=50
 " indentation
-autocmd Filetype javascript,css setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab
+autocmd Filetype javascript,css,scss setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 autocmd Filetype json setlocal tabstop=4 shiftwidth=4 softtabstop=0 expandtab
 autocmd Filetype php,html setlocal tabstop=4 shiftwidth=4 softtabstop=0 expandtab
