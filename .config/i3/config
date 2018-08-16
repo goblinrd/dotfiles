@@ -34,6 +34,10 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+#extra mouse buttons
+bindsym --whole-window button8 exec --no-startup-id xdotool key Prior
+bindsym --whole-window button9 exec --no-startup-id xdotool key Next
+
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+End exec --no-startup-id "setxkbmap -layout us,ru && i3lock -u -t -i ~/.config/i3/i3lock.png"
