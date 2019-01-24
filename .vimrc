@@ -1,98 +1,101 @@
 set number
 set hidden
-syntax on
-set incsearch
-set completeopt=longest,menuone
+set completeopt=longest,menuone,preview
+set splitbelow
+set sw=2 ts=2
 set mouse=a
+set incsearch
+set noshowmode
 call plug#begin('~/.vim/plugged')
+"fs, buffers, search
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'scrooloose/nerdcommenter'
-Plug 'digitaltoad/vim-pug'
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
 
+"languages
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim'
+Plug 'rust-lang/rust.vim'
+
+"language servers/code analyzers
+Plug 'vim-syntastic/syntastic'
+Plug 'Quramy/tsuquyomi'
+Plug 'majutsushi/tagbar'
+
+"organizer
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim', { 'for': 'vimwiki' }
 
-Plug 'vim-syntastic/syntastic'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'mtscout6/syntastic-local-eslint.vim'
-Plug 'heavenshell/vim-jsdoc'
+"helpers
+Plug 'tpope/vim-unimpaired'
+Plug 'scrooloose/nerdcommenter'
 
-Plug 'elixir-editors/vim-elixir'
-Plug 'slashmili/alchemist.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
+"git
+Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
+"visual
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-call plug#end()
-set ts=2 sw=2
-set signcolumn=yes
 
-map <C-t><C-t> :NERDTreeFocus<CR>
-map <C-t><C-n> :NERDTreeToggle<CR>
-map <C-c><C-c> :SyntasticCheck<CR>
-map <C-c><C-x> :SyntasticReset<CR>
-map <C-c><C-n> :ll<CR>
-nmap [q :cp<CR>
-nmap ]q :cnext<CR>
-nmap [l :lp<CR>
-nmap ]l :lnext<CR>
+call plug#end()
+
+"Custom Mappings
+"Filesystem
+nmap <C-T> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
+
 nmap <C-p> :Files<CR>
 nmap <C-\> :Ag<Space>
 vmap <C-\> y:Ag<Space><C-R>"<CR>
 nmap ; :Buffers<CR>
-map <leader><tab><tab> :Commands<CR>
-nmap <leader><tab>m <plug>(fzf-maps-n)
-xmap <leader><tab>m <plug>(fzf-maps-x)
-omap <leader><tab>m <plug>(fzf-maps-o)
-
-autocmd FileType typescript nmap <C-]><C-]> :TsuquyomiDefinition<CR>
-autocmd FileType typescript nmap <C-]><C-[> :TsuquyomiGoBack<CR>
-autocmd FileType typescript nmap <C-]><C-R> :TsuquyomiReferences<CR>
-autocmd FileType typescript nmap <C-]><C-E> :TsuquyomiGeterr<CR>
-autocmd FileType typescript nmap <C-]><C-I> :TsuquyomiImport<CR>
-
-"remove trailing spaces
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-nnoremap <F6> o<Esc>"=strftime("%H:%M:%S ")<CR>P
-
 nmap <leader>wf :VimwikiSearch<Space>
+"reindent all file
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tslint']
-let g:syntastic_typescript_tslint_exe = 'npx tslint'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = {"mode": "passive"}
+"tsuquyomi
+autocmd FileType typescript nmap <C-]><C-]> <Plug>(TsuquyomiDefinition)
+autocmd FileType typescript nmap <C-]><C-[> <Plug>(TsuquyomiGoBack)
+autocmd FileType typescript nmap <C-]><C-R> <Plug>(TsuquyomiReferences)
+autocmd FileType typescript nmap <C-]><C-P> <Plug>(TsuquyomiImplementation)
+autocmd FileType typescript nmap <C-]><C-I> :TsuquyomiImport<CR>
+autocmd FileType typescript nmap <C-]><C-L> :TsuquyomiAsyncGeterr<CR>
+autocmd FileType typescript nmap <C-]><C-H> :TsuquyomiSignatureHelp<CR>
+autocmd FileType typescript nmap <buffer> <C-B> : <C-u>echo tsuquyomi#hint()<CR>
 
-let g:javascript_plugin_jsdoc = 1
+"syntastic
+nmap <C-C><C-L> :SyntasticCheck<CR>
 
-let g:tsuquyomi_completion_detail = 1
+"variables
+"tsuquyomi
+let g:tsuquyomi_disable_default_mappings = 1
 let g:tsuquyomi_disable_quickfix = 1
+let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_completion_preview = 0
 let g:tsuquyomi_disable_default_mappings = 1
 let g:tsuquyomi_single_quote_import = 1
 
-let g:jsdoc_input_description = 1
-let g:jsdoc_allow_input_prompt = 1
-let g:airline_theme = 'angr'
-let g:jsx_ext_required = 0
-" for airline to be visible always
-set laststatus=2
-" hide bottom mode line
-set noshowmode
-" no delay after esc
-set ttimeoutlen=50
-" indentation
-autocmd Filetype javascript,typescript,css,scss setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab
-autocmd Filetype json setlocal tabstop=4 shiftwidth=4 softtabstop=0 expandtab
-autocmd Filetype php,html setlocal tabstop=4 shiftwidth=4 softtabstop=0 expandtab
-autocmd FileType typescript nmap <buffer> <C-B> : <C-u>echo tsuquyomi#hint()<CR>
+"typescript ctags
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
+"syntastic
+let g:syntastic_mode_map = {"mode": "passive"}
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
+let g:syntastic_javascript_eslint_exe = 'npx eslint'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+autocmd Filetype javascript,typescript setlocal et sw=2 ts=2 sts=0
