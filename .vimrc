@@ -2,10 +2,12 @@ set number
 set hidden
 set completeopt=longest,menuone,preview
 set splitbelow
-set sw=2 ts=2
+set sw=2 ts=2 et
 set mouse=a
 set incsearch
 set noshowmode
+set splitright
+set signcolumn=yes
 call plug#begin('~/.vim/plugged')
 "fs, buffers, search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -17,11 +19,13 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'rust-lang/rust.vim'
+Plug 'tomlion/vim-solidity'
 
 "language servers/code analyzers
 Plug 'vim-syntastic/syntastic'
 Plug 'Quramy/tsuquyomi'
 Plug 'majutsushi/tagbar'
+" Plug 'ternjs/tern_for_vim'
 
 "organizer
 Plug 'vimwiki/vimwiki'
@@ -40,6 +44,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
+
+let g:airline_powerline_fonts = 1
 
 "Custom Mappings
 "Filesystem
@@ -61,11 +67,13 @@ autocmd FileType typescript nmap <C-]><C-R> <Plug>(TsuquyomiReferences)
 autocmd FileType typescript nmap <C-]><C-P> <Plug>(TsuquyomiImplementation)
 autocmd FileType typescript nmap <C-]><C-I> :TsuquyomiImport<CR>
 autocmd FileType typescript nmap <C-]><C-L> :TsuquyomiAsyncGeterr<CR>
-autocmd FileType typescript nmap <C-]><C-H> :TsuquyomiSignatureHelp<CR>
+autocmd FileType typescript nmap <C-]><C-F> :TsuquyomiQuickFix<CR>
+autocmd FileType typescript nmap <C-]><C-T> :!tslint --fix %<CR>
 autocmd FileType typescript nmap <buffer> <C-B> : <C-u>echo tsuquyomi#hint()<CR>
 
 "syntastic
 nmap <C-C><C-L> :SyntasticCheck<CR>
+nmap <C-C><C-X> :SyntasticReset<CR>
 
 "variables
 "tsuquyomi
@@ -75,6 +83,8 @@ let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_completion_preview = 0
 let g:tsuquyomi_disable_default_mappings = 1
 let g:tsuquyomi_single_quote_import = 1
+
+let g:NERDSpaceDelims = 1
 
 "typescript ctags
 let g:tagbar_type_typescript = {
@@ -99,3 +109,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 
 autocmd Filetype javascript,typescript setlocal et sw=2 ts=2 sts=0
+

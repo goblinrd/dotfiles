@@ -52,10 +52,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume $DEFA
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume $DEFAULT_SINK +3% && pkill -RTMIN+1 i3blocks #increase sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute $DEFAULT_SINK toggle && pkill -RTMIN+1 i3blocks #increase sound volume
 #increase sound volume
-bindsym XF86AudioPlay exec --no-startup-id cmus-remote --pause
-bindsym XF86AudioPrev exec --no-startup-id cmus-remote --prev && pkill -RTMIN+2 i3blocks
-bindsym XF86AudioNext exec --no-startup-id cmus-remote --next && pkill -RTMIN+2 i3blocks
-bindsym XF86AudioStop exec --no-startup-id cmus-remote --stop
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
 
 bindsym  XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+3 i3blocks
 bindsym  XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+3 i3blocks
@@ -112,10 +112,11 @@ bindsym $mod+F11 exec --no-startup-id "setxkbmap -layout ru,us && pkill -RTMIN+4
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
+bindsym $mod+space exec --no-startup-id "~/.config/i3blocks/language_switch.sh && pkill -RTMIN+4 i3blocks"
 set $PRIMARY_DISPLAY eDP1
 set $SECONDARY_DISPLAY HDMI1
-set $DEFAULT_SINK "alsa_output.pci-0000_00_1b.0.analog-stereo"
+set $DEFAULT_SINK "alsa_output.pci-0000_00_1f.3.analog-stereo"
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -243,11 +244,11 @@ bar {
 client.background #3f4551
 client.focused #333333 #222222 #ffffff
 exec --no-startup-id compton --no-fading-openclose -b
-exec --no-startup-id nitrogen --restore
 exec --no-startup-id parcellite -n
 exec --no-startup-id lxsession
+exec --no-startup-id feh --bg-scale ~/.config/nitrogen/arch_background.jpg
 
 
-for_window [class="TelegramDesktop"] move container to workspace 9
+assign [class="Telegram"] 9
 for_window [class="^.*"] border pixel 2
 
